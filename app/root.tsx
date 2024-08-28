@@ -4,8 +4,17 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from "@remix-run/react";
+import { json } from "@remix-run/node";
 import "./tailwind.css";
+
+export const loader = async () => {
+  const res = await fetch("https://jsonplaceholder.typicode.com/todos/1");
+  const data = await res.json();
+  console.log(data);
+  return json({ posts: data });
+};
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -26,5 +35,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  const fetchedData = useLoaderData<typeof loader>();
+  console.log("d:", fetchedData);
+  return (
+    <div>
+      <Outlet />
+    </div>
+  );
 }
