@@ -7,7 +7,9 @@ import {
   useLoaderData,
 } from "@remix-run/react";
 import { json } from "@remix-run/node";
-import "./tailwind.css";
+import "./reset.css";
+import "./index.css";
+// import "./tailwind.css";
 
 export const loader = async () => {
   const res = await fetch("https://jsonplaceholder.typicode.com/todos/1");
@@ -38,8 +40,8 @@ export default function App() {
   const fetchedData = useLoaderData<typeof loader>();
   console.log("d:", fetchedData);
   return (
-    <div>
+    <main>
       <Outlet />
-    </div>
+    </main>
   );
 }

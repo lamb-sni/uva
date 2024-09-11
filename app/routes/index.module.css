@@ -1,0 +1,9 @@
+.wrapper {
+  width: 100%;
+}
+
+.heading {
+  inline-size: fit-content;
+  margin-inline: auto;
+  color: var(--text-color);
+}
